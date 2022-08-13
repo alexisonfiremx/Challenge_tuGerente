@@ -1,10 +1,14 @@
-version: "3.5"
+version: "3.7"
 
 services:
-    app:
-        image: node:12-alpine
-        volumes: -./:/app
-        working_dir: /app
+    tu-gerente-challenge:
+        container_name: react
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - "./tu-gerente-challenge:/app"
         ports:
             - 3000:3000
-        command: npm start
+        environment:
+            - WATCHPACK_POLLING=true

@@ -1,0 +1,6 @@
+#ignore modules
+tu-gerente-challenge/node_modules
+tu-gerente-challenge/build
+tu-gerente-challenge/package-lock.json
+
+
