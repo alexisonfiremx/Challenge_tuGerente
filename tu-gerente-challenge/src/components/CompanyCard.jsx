@@ -1,5 +1,5 @@
 import "./CompanyCard.css";
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
     collection,
     getDocs,
@@ -15,6 +15,7 @@ const CompanyCard = () => {
     const [lastDocs, setLastDocs] = useState([]);
     const [loading, setLoading] = useState(false);
     const [completed, setCompleted] = useState(false);
+    const boxRef = useRef(null);
 
     useEffect(() => {
         getPymes();
@@ -24,7 +25,6 @@ const CompanyCard = () => {
 
     const updateState = (response) => {
         const isResponseEmpty = response.size === 0;
-        console.log(response.size);
         if (!isResponseEmpty) {
             const pyms = response.docs.map((doc) => ({
                 data: doc.data(),
@@ -61,8 +61,15 @@ const CompanyCard = () => {
             .catch((error) => console.log(error));
     }
 
+    function handleScroll() {
+        let triggered = boxRef.current.scrollTop + boxRef.current.offsetHeight;
+        if (triggered === boxRef.current.scrollHeight) {
+            fetchMore();
+        }
+    }
+
     return (
-        <>
+        <div id="box" ref={boxRef} onScroll={() => handleScroll()}>
             <ul className="container">
                 {company.map((el) => (
                     <li key={el.id} className="items">
@@ -94,12 +101,9 @@ const CompanyCard = () => {
                     </li>
                 ))}
             </ul>
-            {loading && <h1>Loading...</h1>}
-            {!loading && !completed && (
-                <button onClick={() => fetchMore()}>Cargar más</button>
-            )}
+            {loading && <h1>Cargando...</h1>}
             {completed && <h1>No más resultados por mostrar</h1>}
-        </>
+        </div>
     );
 };
 

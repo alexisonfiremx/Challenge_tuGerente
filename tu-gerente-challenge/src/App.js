@@ -4,7 +4,7 @@ import CompanyCard from "./components/CompanyCard";
 function App() {
     return (
         <div className="App">
-            <h1>tuGerente Combo-Box challenged</h1>
+            <h1>tuGerente Combo-Box challenge</h1>
             <CompanyCard />
         </div>
     );
