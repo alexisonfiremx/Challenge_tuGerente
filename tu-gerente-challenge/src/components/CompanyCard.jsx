@@ -1,3 +1,4 @@
+import "./CompanyCard.css";
 import React, { useState, useEffect, Fragment } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../Firebase";
@@ -28,14 +29,34 @@ const CompanyCard = () => {
 
     return (
         <>
-            <ul>
+            <ul className="container">
                 {company.map((el) => (
-                    <li key={el.id}>
-                        <div>Código: {el.data.codigo}</div>
-                        <div>Nit: {el.data.nit}</div>
-                        <div>{el.data.nombre}</div>
-                        <div>{el.data.razonSocial}</div>
-                        <div>{el.data.telefono}</div>
+                    <li key={el.id} className="items">
+                        <div
+                            style={{
+                                fontSize: "30px",
+                                fontWeight: "bold",
+                                color: "#e53535",
+                                margin: "20px 0 5px",
+                            }}
+                        >
+                            {el.data.nombre}
+                        </div>
+                        <div style={{ fontSize: "12px", marginBottom: "20px" }}>
+                            {el.data.razonSocial}
+                        </div>
+                        <div>
+                            <strong>Código: </strong>
+                            {el.data.codigo}
+                        </div>
+                        <div>
+                            <strong>Nit: </strong>
+                            {el.data.nit}
+                        </div>
+                        <div>
+                            <strong>Tel: </strong>
+                            {el.data.telefono}
+                        </div>
                     </li>
                 ))}
             </ul>

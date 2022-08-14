@@ -1,0 +1,22 @@
+.items {
+    list-style-type: none;
+    border-radius: 16px;
+    margin: 20px 10px;
+    padding: 35px 10px 15px 10px;
+    box-sizing: border-box;
+    flex-basis: 300px;
+    height: 300px;
+    box-shadow: 6px 6px 24px 6px rgb(0 0 0 / 10%);
+    font-family: "Poppins", sans-serif;
+    color: #545478;
+}
+
+.items:hover {
+    border: 1px solid rgb(236, 239, 242);
+    box-shadow: 6px 6px 24px 6px rgb(230 230 230 / 1%);
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
